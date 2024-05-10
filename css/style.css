@@ -357,6 +357,14 @@ p{
     .a-head{
         margin-top: 50px;
     }
+    .a-para{  
+    margin-right: 30px;
+    }
+    .a-btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 
