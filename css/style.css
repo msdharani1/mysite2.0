@@ -478,11 +478,11 @@ p{
       footer{
         padding: 50px 0px;
       }
-<<<<<<< HEAD
+/* <<<<<<< HEAD */
       footer p{
         font-size: 11px;
       }
   }
-=======
-  }
->>>>>>> 6d94d39656cf98b2b6240fb15d84e95cfb8b8bb4
+/* ======= */
+  /* } */
+/* >>>>>>> 6d94d39656cf98b2b6240fb15d84e95cfb8b8bb4 */
