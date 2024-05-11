@@ -404,6 +404,15 @@ p{
   .pt-text{
     font-family: 'Font9';
   }
+  @media only screen and (max-width: 991px) {
+    .image-container img{
+        height: 15%;
+        width: 20%;
+      }
+      .image-container {
+        gap: 30px;
+      }
+  }
 
 
 
