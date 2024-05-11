@@ -406,8 +406,8 @@ p{
   }
   @media only screen and (max-width: 991px) {
     .image-container img{
-        height: 15%;
-        width: 20%;
+        height: 25%;
+        width: 30%;
       }
       .image-container {
         gap: 30px;
