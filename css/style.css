@@ -382,7 +382,7 @@ p{
   
   .image-container {
     white-space: nowrap;
-    width: 500px;
+    width: 450px;
     height: 150px;
     display: flex;
     justify-content: center;
@@ -396,7 +396,9 @@ p{
   }
   
   .image-container img {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     max-width: 100%;
     height: auto;
     vertical-align: top;
@@ -406,7 +408,7 @@ p{
   }
   @media only screen and (max-width: 991px) {
     .image-container img{
-        height: 25%;
+        height: 30%;
         width: 30%;
       }
       .image-container {
