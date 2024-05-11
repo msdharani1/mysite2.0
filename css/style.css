@@ -191,7 +191,9 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #B5E3D8;
+    /* background-color: #B5E3D8; */
+    background-color: var(--lightrose);
+    /* color: #fff; */
     width: 100%;
     border-bottom: 1px solid black;
 }
@@ -402,6 +404,7 @@ p{
   .pt-text{
     font-family: 'Font9';
   }
+
 
 
   footer{
