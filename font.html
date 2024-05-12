@@ -3,78 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Font Style Check</title>
+    <title>Audio Test</title>
     <style>
-        @font-face {
-            font-family: "Font1"; 
-            src: url("/fonts/retosta/Retosta.otf") format("truetype"),
+        body {
+        margin: 0;
+        padding: 0;
+        background-color: #222;
         }
-        @font-face {
-            font-family: "Font2"; 
-            src: url("/fonts/market_deco/Market_Deco.ttf") format("truetype"),
+
+        #canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         }
-        @font-face {
-            font-family: "Font3"; 
-            src: url("/fonts/lost_signal/Lost\ Signal\ Medium.ttf") format("truetype"),
-        }
-        @font-face {
-            font-family: "Font4"; 
-            src: url("/fonts/kolak/KOLAK.ttf") format("truetype"),
-        }
-        @font-face {
-            font-family: "Font5"; 
-            src: url("/fonts/jabrowzky/JABROWZKY.ttf") format("truetype"),
-        }
-        @font-face {
-            font-family: "Font6"; 
-            src: url("/fonts/hamston/Hamston.ttf") format("truetype"),
-        }
-        @font-face {
-            font-family: "Font7"; 
-            src: url("/fonts/gallero_vintage/GalleroVintage-DemoVersion-Regular.otf") format("truetype"),
-        }
-        @font-face {
-            font-family: "Font8"; 
-            src: url("/fonts/franchise_2/Franchise.ttf") format("truetype"),
-        }
-        h1{
-            color: red;
-            font-size: 40px;
-        }
-        .t1{
-            font-family: 'Font1', sans-serif;
-        }  
-        .t2{
-            font-family: 'Font2', sans-serif;
-        }        
-        .t3{
-            font-family: 'Font3', sans-serif;
-        }  
-        .t4{
-            font-family: 'Font4', sans-serif;
-        }  
-        .t5{
-            font-family: 'Font5', sans-serif;
-        }  
-        .t6{
-            font-family: 'Font6', sans-serif;
-        }  
-        .t7{
-            font-family: 'Font7', sans-serif;
-        }  
-        .t8{
-            font-family: 'Font8', sans-serif;
-        }  
     </style>
 </head>
 <body>
-    <h1 class="t1">Font 1</h1>
-    <h1 class="t2">Font 2</h1>
-    <h1 class="t3">Font 3</h1>
-    <h1 class="t4">Font 4</h1>
-    <h1 class="t5">Font 5</h1>
-    <h1 class="t6">Font 6</h1>
-    <h1 class="t7">Font 7</h1>
-    <h1 class="t8">Font 8</h1>
+    <audio id="audio" controls>
+        <source src="songs/Remo Happy Birthday BGM.mp3" type="audio/mpeg" autoplay>
+        <!-- Your browser does not support the audio element. -->
+      </audio>
+      <canvas id="canvas"></canvas>
+    <script>
+        window.onload = function() {
+        var audio = document.getElementById('audio');
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        var analyser = audioContext.createAnalyser();
+        var source = audioContext.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+
+        analyser.fftSize = 256;
+        var bufferLength = analyser.frequencyBinCount;
+        var dataArray = new Uint8Array(bufferLength);
+
+        function draw() {
+            requestAnimationFrame(draw);
+
+            analyser.getByteFrequencyData(dataArray);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            var barWidth = (canvas.width / bufferLength) * 2;
+            var barHeight;
+            var x = 0;
+
+            for(var i = 0; i < bufferLength; i++) {
+            barHeight = dataArray[i] * 2;
+
+            var hue = i * 2;
+            ctx.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
+            ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
+            x += barWidth + 1;
+            }
+        };
+
+        draw();
+        };
+    </script>
 </body>
 </html>
